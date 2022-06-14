@@ -59,13 +59,20 @@ export default function Ingresso({ product }: IngressoProps) {
 export const getStaticProps: GetStaticProps = async () => {
   const price = await stripe.prices.retrieve('price_1L9MSfIlFvwTQhF4mOCfKdGN');
 
-  const product = {
-    priceId: price.id,
-    amount: new Intl.NumberFormat('pt-BR', {
-      style: 'currency',
-      currency: 'BRL',
-    }).format(price.unit_amount ? price.unit_amount : 0 / 100),
+  let product = {
+    priceId: '',
+    amount: '',
   };
+
+  if (price.unit_amount) {
+    product = {
+      priceId: price.id,
+      amount: new Intl.NumberFormat('pt-BR', {
+        style: 'currency',
+        currency: 'BRL',
+      }).format(price.unit_amount / 100),
+    };
+  }
 
   return {
     props: {

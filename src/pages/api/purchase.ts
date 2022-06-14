@@ -23,7 +23,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     if (!customerId) {
       const stripeCustomer = await stripe.customers.create({
-        email: session?.user?.email || '',
+        email: session?.user?.email ?? '',
         // metadata:
       });
 
@@ -45,8 +45,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       line_items: [{ price: 'price_1L9MSfIlFvwTQhF4mOCfKdGN', quantity: 1 }],
       mode: 'payment',
       allow_promotion_codes: true,
-      success_url: process.env.STRIPE_SUCCESS_URL || '',
-      cancel_url: process.env.STRIPE_CANCEL_URL || '',
+      success_url: process.env.STRIPE_SUCCESS_URL ?? '',
+      cancel_url: process.env.STRIPE_CANCEL_URL ?? '',
     });
 
     return res.status(200).json({ sessionId: checkoutCheckoutSession.id });
