@@ -1,4 +1,4 @@
-import { Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Flex, Heading, Stack } from '@chakra-ui/react';
+import { Badge, Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Flex, Heading, Stack, Image } from '@chakra-ui/react';
 import Link from 'next/link';
 import { RiArrowDropRightLine } from 'react-icons/ri';
 import { Sidebar } from '../../components/Sidebar';
@@ -42,13 +42,49 @@ export default function Ingresso({ product }: IngressoProps) {
             </BreadcrumbItem>
           </Breadcrumb>
           <Heading color="gray.700" fontSize={['3xl', '5xl']} mb="6" mt={['5', '20']} fontFamily={'body'}>
-            Ingresso
+            Romaria Fluvial 2022
           </Heading>
           <Stack>
-            <Heading color="gray.700" fontSize="xl" mb="6" mt={['5', '20']} fontFamily={'body'}>
+            <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
+              <Image src="/assets/images/promocao.jpg" alt="Ingresso Romaria Fluvial" />
+
+              <Box p="6">
+                <Box display="flex" alignItems="baseline">
+                  <Badge borderRadius="full" px="2" colorScheme="teal">
+                    1º Lote
+                  </Badge>
+                  {/* <Box color="gray.500" fontWeight="semibold" letterSpacing="wide" fontSize="xs" textTransform="uppercase" ml="2">
+                    {property.beds} beds &bull; {property.baths} baths
+                  </Box> */}
+                </Box>
+
+                <Box mt="1" fontWeight="semibold" as="h4" lineHeight="tight" noOfLines={1}>
+                  Romaria Fluvial
+                </Box>
+
+                <Box>
+                  {product.amount}
+                  {/* <Box as="span" color="gray.600" fontSize="sm">
+                    / wk
+                  </Box> */}
+                </Box>
+                <PurchaseButton priceId={product.priceId} />
+
+                {/* <Box display="flex" mt="2" alignItems="center">
+                  {Array(5)
+                    .fill('')
+                    .map((_, i) => (
+                      <StarIcon key={i} color={i < property.rating ? 'teal.500' : 'gray.300'} />
+                    ))}
+                  <Box as="span" ml="2" color="gray.600" fontSize="sm">
+                    {property.reviewCount} reviews
+                  </Box>
+                </Box> */}
+              </Box>
+            </Box>
+            {/* <Heading color="gray.700" fontSize="xl" mb="6" mt={['5', '20']} fontFamily={'body'}>
               Valor: {product.amount}
-            </Heading>
-            <PurchaseButton priceId={product.priceId} />
+            </Heading> */}
           </Stack>
         </Box>
       </Flex>

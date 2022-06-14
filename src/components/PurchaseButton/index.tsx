@@ -39,7 +39,7 @@ export function PurchaseButton({ priceId }: PurchaseButtonProps) {
         }}
         onClick={handlePurchase}
       >
-        Comprar
+        Comprar com cartão ou boleto
       </Button>
     </Flex>
   );
