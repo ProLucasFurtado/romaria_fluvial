@@ -18,7 +18,7 @@ export function Header() {
   });
 
   return (
-    <Flex as="header" w="100%" m="auto" pt="6" pb="4" align="center" justify="space-between" bg="blue.600" pt="4" px={['2', '8']}>
+    <Flex as="header" w="100%" m="auto" pt="6" pb="4" align="center" justify="space-between" bg="blue.600" px={['2', '8']}>
       {!isWideVersion && (
         <IconButton
           aria-label="Abrir menu"
