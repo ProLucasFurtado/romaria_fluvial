@@ -13,9 +13,8 @@ import {
 } from '@chakra-ui/react';
 import Link from 'next/link';
 import { RiArrowDropRightLine } from 'react-icons/ri';
-import { Header } from '../../components/Header';
 import { Sidebar } from '../../components/Sidebar';
-import { GetStaticPaths } from 'next';
+import { GetStaticProps } from 'next';
 import { getPrismicClient } from '../../services/prismic';
 import * as prismic from '@prismicio/client';
 import { RichText } from 'prismic-dom';
@@ -72,7 +71,7 @@ export default function Sobre({ post }: PostProps) {
   );
 }
 
-export const getStaticProps: GetStaticPaths = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const client = getPrismicClient();
 
   const response = await client.get({

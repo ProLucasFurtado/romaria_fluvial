@@ -1,4 +1,14 @@
-import { Box, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerOverlay, Stack, useBreakpointValue } from '@chakra-ui/react';
+import {
+  Box,
+  Drawer,
+  DrawerBody,
+  DrawerCloseButton,
+  DrawerContent,
+  DrawerOverlay,
+  HStack,
+  Stack,
+  useBreakpointValue,
+} from '@chakra-ui/react';
 import { useContext } from 'react';
 import { useSidebarDrawer } from '../../contexts/SidebarDrawerContext';
 import { UserContext } from '../../contexts/UserContext';
@@ -35,20 +45,5 @@ export function Sidebar() {
     );
   }
 
-  return false;
-
-  if (!session) {
-    return false;
-  }
-
-  return (
-    <Box as="aside" w={menuOpen ? '15%' : '4%'}>
-      <Stack spacing="12" align="flex-start">
-        <Box>
-          {!isDrawerSidebar && <ShowMenu />}
-          <SidebarNav />
-        </Box>
-      </Stack>
-    </Box>
-  );
+  return <HStack></HStack>;
 }

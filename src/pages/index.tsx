@@ -23,15 +23,13 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 import Link from 'next/link';
-import { Header } from '../components/Header';
 import { Sidebar } from '../components/Sidebar';
-import { GetStaticPaths } from 'next';
+import { GetStaticProps } from 'next';
 import { getPrismicClient } from '../services/prismic';
 import * as prismic from '@prismicio/client';
 import { RichText } from 'prismic-dom';
 import ImageSlider from '../components/ImageSlider';
-import { SlideData } from '../components/SlideData';
-import { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 import { RiCalendar2Line } from 'react-icons/ri';
 
 type Post = {
@@ -70,11 +68,8 @@ interface PostsProps {
 
 export default function Home({ posts, banners, oracao, agenda }: PostsProps) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [scrollBehavior, setScrollBehavior] = useState('inside');
 
-  const btnRef = useRef();
-
-  const newBanners = banners.map((banner) => {
+  const newBanners = banners.map((banner: any) => {
     return {
       image: banner.image.url,
     };
@@ -84,7 +79,7 @@ export default function Home({ posts, banners, oracao, agenda }: PostsProps) {
 
   return (
     <Box>
-      <Modal onClose={onClose} finalFocusRef={btnRef} isOpen={isOpen} scrollBehavior={scrollBehavior}>
+      <Modal onClose={onClose} isOpen={isOpen} scrollBehavior={'inside'}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader></ModalHeader>
@@ -97,15 +92,7 @@ export default function Home({ posts, banners, oracao, agenda }: PostsProps) {
           </ModalFooter>
         </ModalContent>
       </Modal>
-      <Box
-        w={'full'}
-        bg={useColorModeValue('white', 'gray.900')}
-        boxShadow={'xl'}
-        alignContent="center"
-        justifyContent="center"
-        mb={10}
-        bg="blue.600"
-      >
+      <Box w={'full'} boxShadow={'xl'} alignContent="center" justifyContent="center" mb={10} bg="blue.600">
         <ImageSlider slides={newBanners} mt="auto" />
       </Box>
 
@@ -214,7 +201,7 @@ export default function Home({ posts, banners, oracao, agenda }: PostsProps) {
                     {oracao.description}
                   </Text>
                   <Flex justify="flex-end">
-                    <Button ref={btnRef} onClick={onOpen} border="0" bg="blue.500" color="blue.50" borderRadius={4} px="4" py="1">
+                    <Button onClick={onOpen} border="0" bg="blue.500" color="blue.50" borderRadius={4} px="4" py="1">
                       Ler mais
                     </Button>
                   </Flex>
@@ -327,7 +314,7 @@ export default function Home({ posts, banners, oracao, agenda }: PostsProps) {
   );
 }
 
-export const getStaticProps: GetStaticPaths = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const client = getPrismicClient();
 
   const responsePosts = await client.get({
