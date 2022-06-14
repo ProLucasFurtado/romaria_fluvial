@@ -1,0 +1,9 @@
+{
+  "id": "reserva",
+  "label": "Reversa",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {}
+  }
+}

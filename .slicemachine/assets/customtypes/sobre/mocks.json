@@ -1,0 +1,30 @@
+{
+  "id": "bff66a1f-800e-492e-8872-48d0cb484c34",
+  "uid": "ratione-sed-nesciunt",
+  "type": "sobre",
+  "data": {
+    "title": [
+      {
+        "type": "heading1",
+        "text": "Deliver bleeding-edge synergies",
+        "spans": []
+      }
+    ],
+    "image": {
+      "dimensions": {
+        "width": 900,
+        "height": 500
+      },
+      "alt": "Placeholder image",
+      "copyright": null,
+      "url": "https://images.unsplash.com/photo-1589652717521-10c0d092dea9?w=900&h=500&fit=crop"
+    },
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "Cillum ex tempor esse cupidatat veniam ipsum eiusmod ipsum officia amet.",
+        "spans": []
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "id": "4d92a531-2d93-4ee8-904f-43a75acebcc2",
+  "uid": "omnis-non-culpa",
+  "type": "oracao-do-dia",
+  "data": {
+    "title": [
+      {
+        "type": "heading1",
+        "text": "Productize sexy action-items",
+        "spans": []
+      }
+    ],
+    "description": [
+      {
+        "type": "heading3",
+        "text": "Disintermediate plug-and-play e-business",
+        "spans": []
+      }
+    ],
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "Nulla voluptate qui enim tempor ipsum enim cupidatat. Velit nisi do eiusmod enim labore non laboris irure commodo ullamco occaecat do id est.",
+        "spans": []
+      }
+    ],
+    "date": "2013-09-14"
+  }
+}

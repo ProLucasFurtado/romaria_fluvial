@@ -1,0 +1,23 @@
+{
+  "id": "eee1c89c-f1dd-4883-a048-fc1ec7498153",
+  "uid": "nulla-quia-saepe",
+  "type": "banner",
+  "data": {
+    "image": {
+      "dimensions": {
+        "width": 900,
+        "height": 500
+      },
+      "alt": "Placeholder image",
+      "copyright": null,
+      "url": "https://images.unsplash.com/photo-1571126770897-2d612d1f7b89?w=900&h=500&fit=crop"
+    },
+    "description": [
+      {
+        "type": "paragraph",
+        "text": "Culpa tempor incididunt incididunt sit sint nulla culpa velit magna proident laborum elit. In elit magna cupidatat amet culpa dolore quis exercitation ad.",
+        "spans": []
+      }
+    ]
+  }
+}
