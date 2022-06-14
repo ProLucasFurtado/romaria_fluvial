@@ -28,7 +28,6 @@ import { getPrismicClient } from '../services/prismic';
 import * as prismic from '@prismicio/client';
 import { RichText } from 'prismic-dom';
 import ImageSlider from '../components/ImageSlider';
-import { useRef } from 'react';
 import { RiCalendar2Line } from 'react-icons/ri';
 
 type Post = {
