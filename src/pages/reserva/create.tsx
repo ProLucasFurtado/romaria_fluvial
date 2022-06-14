@@ -20,7 +20,6 @@ import { Header } from '../../components/Header';
 import { Sidebar } from '../../components/Sidebar';
 import { UserContext } from '../../contexts/UserContext';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import InputMask from 'react-input-mask';
 
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -133,13 +132,12 @@ export default function CreateCenarios() {
             </SimpleGrid>
             <SimpleGrid minChildWidth="240px" spacing={['6', '8']} w="100%">
               <Input
-                as={InputMask}
                 {...register('celular')}
                 error={errors.celular}
                 name="celular"
                 label="Celular"
+                type="number"
                 placeholder="Digite apenas números *com DDD"
-                mask="(99)99999-9999"
               />
               <Input
                 {...register('quantidade')}
