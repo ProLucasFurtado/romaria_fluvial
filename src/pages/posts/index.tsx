@@ -52,6 +52,7 @@ export default function Posts({ posts }: PostsProps) {
           <Grid templateColumns={['repeat(1, 1fr)', 'repeat(3, 1fr)']} gap={6}>
             {posts.map((post) => (
               <GridItem
+                key={post.slug}
                 w={'full'}
                 bg="gray.900"
                 boxShadow={'xl'}
