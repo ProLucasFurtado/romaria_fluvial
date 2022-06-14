@@ -13,7 +13,7 @@ export function Notifications() {
   const { data: session } = useSession();
 
   if (isDrawerSidebar) {
-    return false;
+    return <HStack></HStack>;
   }
 
   return (
