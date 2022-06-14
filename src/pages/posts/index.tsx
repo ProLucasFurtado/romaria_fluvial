@@ -3,29 +3,19 @@ import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
-  Button,
-  Divider,
   Flex,
   Grid,
   GridItem,
   Heading,
-  Icon,
   Image,
-  Input,
-  Select,
   Stack,
   Text,
-  useBreakpointValue,
   useColorModeValue,
 } from '@chakra-ui/react';
 import Link from 'next/link';
-import { useContext, useState } from 'react';
-import { RiAddLine, RiArrowDropRightLine } from 'react-icons/ri';
-import { Header } from '../../components/Header';
+import { RiArrowDropRightLine } from 'react-icons/ri';
 import { Sidebar } from '../../components/Sidebar';
-import { UserContext } from '../../contexts/UserContext';
-import { useForm } from 'react-hook-form';
-import { GetStaticPaths } from 'next';
+import { GetStaticProps } from 'next';
 import { getPrismicClient } from '../../services/prismic';
 import * as prismic from '@prismicio/client';
 import { RichText } from 'prismic-dom';
@@ -111,7 +101,7 @@ export default function Posts({ posts }: PostsProps) {
   );
 }
 
-export const getStaticProps: GetStaticPaths = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const client = getPrismicClient();
 
   const response = await client.get({
