@@ -1,4 +1,4 @@
-import { Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Flex, Heading, Stack, useColorModeValue } from '@chakra-ui/react';
+import { Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Flex, Heading, Stack } from '@chakra-ui/react';
 import Link from 'next/link';
 import { RiArrowDropRightLine } from 'react-icons/ri';
 import { Sidebar } from '../../components/Sidebar';
@@ -41,11 +41,11 @@ export default function Ingresso({ product }: IngressoProps) {
               <BreadcrumbLink href="#">Ingresso</BreadcrumbLink>
             </BreadcrumbItem>
           </Breadcrumb>
-          <Heading color={useColorModeValue('gray.700', 'white')} fontSize={['3xl', '5xl']} mb="6" mt={['5', '20']} fontFamily={'body'}>
+          <Heading color="gray.700" fontSize={['3xl', '5xl']} mb="6" mt={['5', '20']} fontFamily={'body'}>
             Ingresso
           </Heading>
           <Stack>
-            <Heading color={useColorModeValue('gray.700', 'white')} fontSize="xl" mb="6" mt={['5', '20']} fontFamily={'body'}>
+            <Heading color="gray.700" fontSize="xl" mb="6" mt={['5', '20']} fontFamily={'body'}>
               Valor: {product.amount}
             </Heading>
             <PurchaseButton priceId={product.priceId} />

@@ -12,7 +12,6 @@ import {
   Stack,
   Text,
   useBreakpointValue,
-  useColorModeValue,
 } from '@chakra-ui/react';
 import Link from 'next/link';
 import { useContext, useState } from 'react';
@@ -79,7 +78,7 @@ export default function Post({ post }: PostProps) {
             </BreadcrumbItem>
           </Breadcrumb>
 
-          <Heading color={useColorModeValue('gray.700', 'white')} fontSize={['3xl', '5xl']} mb="6" mt={['5', '20']} fontFamily={'body'}>
+          <Heading color="gray.700" fontSize={['3xl', '5xl']} mb="6" mt={['5', '20']} fontFamily={'body'}>
             {post.title}
           </Heading>
           <Box bg={'gray.100'} pos={'relative'}>

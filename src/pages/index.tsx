@@ -19,7 +19,6 @@ import {
   ModalOverlay,
   Stack,
   Text,
-  useColorModeValue,
   useDisclosure,
 } from '@chakra-ui/react';
 import Link from 'next/link';
@@ -103,7 +102,7 @@ export default function Home({ posts, banners, oracao, agenda }: PostsProps) {
           <Grid templateColumns={['repeat(1, 1fr)', 'repeat(4, 1fr)']} gap={10} mb={20}>
             <GridItem
               w={'full'}
-              bg={useColorModeValue('white', 'gray.900')}
+              bg="gray.900"
               boxShadow={'xl'}
               rounded={'md'}
               alignContent="center"
@@ -120,7 +119,7 @@ export default function Home({ posts, banners, oracao, agenda }: PostsProps) {
             </GridItem>
             <GridItem
               w={'full'}
-              bg={useColorModeValue('white', 'gray.900')}
+              bg="white"
               boxShadow={'xl'}
               rounded={'md'}
               alignContent="center"
@@ -137,7 +136,7 @@ export default function Home({ posts, banners, oracao, agenda }: PostsProps) {
             </GridItem>
             <GridItem
               w={'full'}
-              bg={useColorModeValue('white', 'gray.900')}
+              bg="white"
               boxShadow={'xl'}
               rounded={'md'}
               alignContent="center"
@@ -154,7 +153,7 @@ export default function Home({ posts, banners, oracao, agenda }: PostsProps) {
             </GridItem>
             <GridItem
               w={'full'}
-              bg={useColorModeValue('white', 'gray.900')}
+              bg="white"
               boxShadow={'xl'}
               rounded={'md'}
               alignContent="center"
@@ -175,7 +174,7 @@ export default function Home({ posts, banners, oracao, agenda }: PostsProps) {
             <Flex
               w={'full'}
               direction={['column', 'row']}
-              bg={useColorModeValue('white', 'gray.900')}
+              bg="white"
               boxShadow={'xl'}
               rounded={'md'}
               alignContent="center"
@@ -211,7 +210,7 @@ export default function Home({ posts, banners, oracao, agenda }: PostsProps) {
             <Flex
               w={'full'}
               direction={['column', 'row']}
-              bg={useColorModeValue('white', 'gray.900')}
+              bg="white"
               boxShadow={'xl'}
               rounded={'md'}
               alignContent="center"
@@ -232,7 +231,7 @@ export default function Home({ posts, banners, oracao, agenda }: PostsProps) {
 
                 <Box>
                   {agenda.map((a) => (
-                    <Stack mb="2">
+                    <Stack mb="2" key={a.event}>
                       <Flex>
                         <Icon as={RiCalendar2Line} color="gray.500" mr="2" />
                         <Heading color="gray.500" fontSize={'sm'}>
@@ -273,8 +272,9 @@ export default function Home({ posts, banners, oracao, agenda }: PostsProps) {
           <Grid templateColumns={['repeat(1, 1fr)', 'repeat(3, 1fr)']} gap={10} mb={10}>
             {posts.map((post) => (
               <GridItem
+                key={post.slug}
                 w={'full'}
-                bg={useColorModeValue('white', 'gray.900')}
+                bg="gray.900"
                 boxShadow={'xl'}
                 rounded={'md'}
                 alignContent="center"
@@ -290,7 +290,7 @@ export default function Home({ posts, banners, oracao, agenda }: PostsProps) {
                       <Stack direction={'column'} spacing={0} fontSize={'sm'}>
                         <Text color={'gray.500'}>{post.updatedAt}</Text>
                       </Stack>
-                      <Heading color={useColorModeValue('gray.700', 'white')} fontSize={'2xl'} fontFamily={'body'}>
+                      <Heading color="gray.700" fontSize={'2xl'} fontFamily={'body'}>
                         {post.title}
                       </Heading>
                       <Text color={'gray.500'}>{post.subtitle}</Text>

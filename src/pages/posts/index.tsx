@@ -1,17 +1,4 @@
-import {
-  Box,
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  Flex,
-  Grid,
-  GridItem,
-  Heading,
-  Image,
-  Stack,
-  Text,
-  useColorModeValue,
-} from '@chakra-ui/react';
+import { Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Flex, Grid, GridItem, Heading, Image, Stack, Text } from '@chakra-ui/react';
 import Link from 'next/link';
 import { RiArrowDropRightLine } from 'react-icons/ri';
 import { Sidebar } from '../../components/Sidebar';
@@ -66,7 +53,7 @@ export default function Posts({ posts }: PostsProps) {
             {posts.map((post) => (
               <GridItem
                 w={'full'}
-                bg={useColorModeValue('white', 'gray.900')}
+                bg="gray.900"
                 boxShadow={'xl'}
                 rounded={'md'}
                 p={6}
@@ -83,7 +70,7 @@ export default function Posts({ posts }: PostsProps) {
                       <Stack direction={'column'} spacing={0} fontSize={'sm'}>
                         <Text color={'gray.500'}>{post.updatedAt}</Text>
                       </Stack>
-                      <Heading color={useColorModeValue('gray.700', 'white')} fontSize={'2xl'} fontFamily={'body'}>
+                      <Heading color="gray.700" fontSize={'2xl'} fontFamily={'body'}>
                         {post.title}
                       </Heading>
                       <Text color={'gray.500'}>{post.subtitle}</Text>

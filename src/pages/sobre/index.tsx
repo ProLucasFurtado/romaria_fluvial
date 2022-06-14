@@ -1,16 +1,4 @@
-import {
-  Box,
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  Divider,
-  Flex,
-  Heading,
-  Image,
-  Stack,
-  Text,
-  useColorModeValue,
-} from '@chakra-ui/react';
+import { Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Divider, Flex, Heading, Image, Stack, Text } from '@chakra-ui/react';
 import Link from 'next/link';
 import { RiArrowDropRightLine } from 'react-icons/ri';
 import { Sidebar } from '../../components/Sidebar';
@@ -56,7 +44,7 @@ export default function Sobre({ post }: PostProps) {
               <BreadcrumbLink href="#">{post.title}</BreadcrumbLink>
             </BreadcrumbItem>
           </Breadcrumb>
-          <Heading color={useColorModeValue('gray.700', 'white')} fontSize={['3xl', '5xl']} mb="6" mt={['5', '20']} fontFamily={'body'}>
+          <Heading color="gray.700" fontSize={['3xl', '5xl']} mb="6" mt={['5', '20']} fontFamily={'body'}>
             {post.title}
           </Heading>
           <Box bg={'gray.100'} pos={'relative'}>
