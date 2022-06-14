@@ -25,7 +25,7 @@ export function PurchaseButton({ priceId }: PurchaseButtonProps) {
 
       await stripe?.redirectToCheckout({ sessionId });
     } catch (error) {
-      alert(error.message);
+      alert('Houve um erro!');
     }
   }
 
