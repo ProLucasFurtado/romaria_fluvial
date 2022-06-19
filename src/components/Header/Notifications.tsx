@@ -1,6 +1,15 @@
 import { HStack, Icon, Link as ChakraLink, Tooltip, Text, Flex, useBreakpointValue } from '@chakra-ui/react';
 import Router from 'next/router';
-import { RiChat3Line, RiFileList2Line, RiHome4Line, RiLoginBoxLine, RiLogoutBoxLine, RiNotificationLine, RiShipLine } from 'react-icons/ri';
+import {
+  RiChat3Line,
+  RiFileList2Line,
+  RiHome4Line,
+  RiLoginBoxLine,
+  RiLogoutBoxLine,
+  RiNotificationLine,
+  RiPolaroid2Line,
+  RiShipLine,
+} from 'react-icons/ri';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 
@@ -44,6 +53,16 @@ export function Notifications() {
             <Icon as={RiFileList2Line} fontSize="20" />
             <Text fontSize="sm" ml="1">
               Posts
+            </Text>
+          </Flex>
+        </ChakraLink>
+      </Link>
+      <Link href="/posts" prefetch passHref>
+        <ChakraLink>
+          <Flex align="center" justify="center">
+            <Icon as={RiPolaroid2Line} fontSize="20" />
+            <Text fontSize="sm" ml="1">
+              Galeria de fotos
             </Text>
           </Flex>
         </ChakraLink>

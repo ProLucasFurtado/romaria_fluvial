@@ -18,7 +18,7 @@ export function Header() {
   });
 
   return (
-    <Flex as="header" w="100%" m="auto" pt="6" pb="4" align="center" justify="space-between" bg="blue.600" px={['2', '8']}>
+    <Flex as="header" w="100%" m="auto" p="2" align="center" justify="space-between" bg="blue.600" px={['2', '8']}>
       {!isWideVersion && (
         <IconButton
           aria-label="Abrir menu"
@@ -36,7 +36,7 @@ export function Header() {
       </Box>
 
       <Flex align="center" justify="flex-end" alignItems="center">
-        <Search />
+        {/* <Search /> */}
         <Notifications />
         <Profile showProfileData={isWideVersion} />
       </Flex>
