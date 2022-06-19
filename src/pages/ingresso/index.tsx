@@ -1,4 +1,4 @@
-import { Badge, Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Flex, Heading, Stack, Image } from '@chakra-ui/react';
+import { Badge, Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Flex, Heading, Stack, Image, Button } from '@chakra-ui/react';
 import Link from 'next/link';
 import { RiArrowDropRightLine } from 'react-icons/ri';
 import { Sidebar } from '../../components/Sidebar';
@@ -68,7 +68,19 @@ export default function Ingresso({ product }: IngressoProps) {
                     / wk
                   </Box> */}
                 </Box>
-                <PurchaseButton priceId={product.priceId} />
+                <Flex>
+                  <PurchaseButton priceId={product.priceId} />
+                  <Button
+                    colorScheme="green"
+                    _disabled={{
+                      bg: 'blue.500',
+                      cursor: 'default',
+                    }}
+                    onClick={() => {}}
+                  >
+                    Comprar com cartão ou boleto
+                  </Button>
+                </Flex>
 
                 {/* <Box display="flex" mt="2" alignItems="center">
                   {Array(5)

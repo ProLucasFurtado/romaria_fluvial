@@ -29,6 +29,7 @@ import * as prismic from '@prismicio/client';
 import { RichText } from 'prismic-dom';
 import ImageSlider from '../components/ImageSlider';
 import { RiCalendar2Line } from 'react-icons/ri';
+import { useEffect } from 'react';
 
 type Post = {
   slug: string;
@@ -64,6 +65,16 @@ interface PostsProps {
   agenda: Agenda[];
 }
 
+const deviceType = () => {
+  const ua = navigator.userAgent;
+  if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
+    return 'tablet';
+  } else if (/Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
+    return 'mobile';
+  }
+  return 'desktop';
+};
+
 export default function Home({ posts, banners, oracao, agenda }: PostsProps) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -74,6 +85,8 @@ export default function Home({ posts, banners, oracao, agenda }: PostsProps) {
   });
 
   console.log('agenda', agenda);
+
+  useEffect(() => {}, []);
 
   return (
     <Box>

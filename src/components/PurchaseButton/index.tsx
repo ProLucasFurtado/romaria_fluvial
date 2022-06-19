@@ -30,17 +30,15 @@ export function PurchaseButton({ priceId }: PurchaseButtonProps) {
   }
 
   return (
-    <Flex>
-      <Button
-        colorScheme="green"
-        _disabled={{
-          bg: 'blue.500',
-          cursor: 'default',
-        }}
-        onClick={handlePurchase}
-      >
-        Comprar com cartão ou boleto
-      </Button>
-    </Flex>
+    <Button
+      colorScheme="green"
+      _disabled={{
+        bg: 'blue.500',
+        cursor: 'default',
+      }}
+      onClick={handlePurchase}
+    >
+      Comprar com cartão ou boleto
+    </Button>
   );
 }
