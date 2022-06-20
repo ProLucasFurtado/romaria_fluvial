@@ -286,7 +286,7 @@ export default function Home({ posts, banners, oracao, agenda }: PostsProps) {
               <GridItem
                 key={post.slug}
                 w={'full'}
-                bg="gray.900"
+                bg="blue.600"
                 boxShadow={'xl'}
                 rounded={'md'}
                 alignContent="center"
@@ -295,17 +295,17 @@ export default function Home({ posts, banners, oracao, agenda }: PostsProps) {
               >
                 <Link href={`/posts/${post.slug}`}>
                   <a>
-                    <Box bg={'gray.100'} pos={'relative'}>
+                    <Box>
                       <Image src={post.image} width="100%" />
                     </Box>
                     <Stack p={6}>
                       <Stack direction={'column'} spacing={0} fontSize={'sm'}>
-                        <Text color={'gray.500'}>{post.updatedAt}</Text>
+                        <Text color="whiteAlpha.500">{post.updatedAt}</Text>
                       </Stack>
-                      <Heading color="gray.700" fontSize={'2xl'} fontFamily={'body'}>
+                      <Heading color="whiteAlpha.900" fontSize={'2xl'} fontFamily={'body'}>
                         {post.title}
                       </Heading>
-                      <Text color={'gray.500'}>{post.subtitle}</Text>
+                      <Text color="whiteAlpha.800">{post.subtitle}</Text>
                     </Stack>
                   </a>
                 </Link>

@@ -44,6 +44,14 @@
         }
       }
     },
-    "agenda-do-cirio": {}
+    "agenda-do-cirio": {},
+    "galeria": {
+      "title": {
+        "config": {
+          "patternType": "HEADING",
+          "blocks": 1
+        }
+      }
+    }
   }
 }

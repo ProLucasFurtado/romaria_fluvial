@@ -57,7 +57,7 @@ export function Notifications() {
           </Flex>
         </ChakraLink>
       </Link>
-      <Link href="/posts" prefetch passHref>
+      <Link href="/galeria" prefetch passHref>
         <ChakraLink>
           <Flex align="center" justify="center">
             <Icon as={RiPolaroid2Line} fontSize="20" />

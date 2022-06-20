@@ -1,0 +1,23 @@
+{
+  "id": "1131ad42-6ef9-4a1b-957b-306066fd3fa5",
+  "uid": "quo-dolor-velit",
+  "type": "galeria",
+  "data": {
+    "title": [
+      {
+        "type": "heading1",
+        "text": "Grow real-time mindshare",
+        "spans": []
+      }
+    ],
+    "image": {
+      "dimensions": {
+        "width": 900,
+        "height": 500
+      },
+      "alt": "Placeholder image",
+      "copyright": null,
+      "url": "https://images.unsplash.com/photo-1589652717521-10c0d092dea9?w=900&h=500&fit=crop"
+    }
+  }
+}

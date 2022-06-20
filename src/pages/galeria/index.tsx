@@ -8,11 +8,9 @@ import * as prismic from '@prismicio/client';
 import { RichText } from 'prismic-dom';
 
 type Post = {
-  slug: string;
+  id: string;
   title: string;
-  subtitle: string;
   image: string;
-  excerpt: string;
   updatedAt: string;
 };
 
@@ -20,7 +18,9 @@ interface PostsProps {
   posts: Post[];
 }
 
-export default function Posts({ posts }: PostsProps) {
+export default function Galeria({ posts }: PostsProps) {
+  console.log('galeria ', posts);
+
   return (
     <Box>
       <Flex w="100%" maxWidth={1480} mx="auto" my="6">
@@ -45,14 +45,14 @@ export default function Posts({ posts }: PostsProps) {
             </BreadcrumbItem>
 
             <BreadcrumbItem isCurrentPage>
-              <BreadcrumbLink href="#">Posts</BreadcrumbLink>
+              <BreadcrumbLink href="#">Galeria de Fotos</BreadcrumbLink>
             </BreadcrumbItem>
           </Breadcrumb>
 
-          <Grid templateColumns={['repeat(1, 1fr)', 'repeat(3, 1fr)']} gap={6}>
+          <Grid templateColumns={['repeat(1, 1fr)', 'repeat(4, 1fr)']} gap={6}>
             {posts.map((post) => (
               <GridItem
-                key={post.slug}
+                key={post.id}
                 w={'full'}
                 bg="blue.600"
                 boxShadow={'xl'}
@@ -61,7 +61,7 @@ export default function Posts({ posts }: PostsProps) {
                 justifyContent="center"
                 overflow={'hidden'}
               >
-                <Link href={`/posts/${post.slug}`}>
+                <Link href={`/galeria/${post.id}`}>
                   <a>
                     <Box>
                       <Image src={post.image} width="100%" />
@@ -73,7 +73,6 @@ export default function Posts({ posts }: PostsProps) {
                       <Heading color="whiteAlpha.900" fontSize={'2xl'} fontFamily={'body'}>
                         {post.title}
                       </Heading>
-                      <Text color="whiteAlpha.800">{post.subtitle}</Text>
                     </Stack>
                   </a>
                 </Link>
@@ -92,17 +91,15 @@ export const getStaticProps: GetStaticProps = async () => {
   const client = getPrismicClient();
 
   const response = await client.get({
-    predicates: prismic.predicate.at('document.type', 'posts'),
+    predicates: prismic.predicate.at('document.type', 'galeria'),
     lang: 'pt-br',
   });
 
   const posts = response.results.map((post) => {
     return {
-      slug: post.uid,
+      id: post.id,
       title: RichText.asText(post.data.title),
-      subtitle: RichText.asText(post.data.subtitle),
       image: post.data.image.url,
-      excerpt: post.data.content.find((content: any) => content.type === 'paragraph')?.text ?? '',
       updatedAt: new Date(post.last_publication_date).toLocaleDateString('pt-BR', {
         day: '2-digit',
         month: 'long',
