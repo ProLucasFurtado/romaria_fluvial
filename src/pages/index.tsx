@@ -412,5 +412,6 @@ export const getStaticProps: GetStaticProps = async () => {
       oracao,
       agenda,
     },
+    revalidate: 60 * 60,
   };
 };
