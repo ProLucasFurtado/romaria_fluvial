@@ -204,7 +204,7 @@ export default function Home({ posts, banners, oracao, agenda, agendaTodos }: Po
               justifyContent="center"
               overflow={'hidden'}
             >
-              <Link href={`/`}>
+              <Link href={`/reserva/create`}>
                 <a>
                   <Box bg={'gray.100'} pos={'relative'}>
                     <Image src="/assets/images/reserva.jpg" width="100%" />

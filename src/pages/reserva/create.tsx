@@ -11,6 +11,7 @@ import {
   SimpleGrid,
   useBreakpointValue,
   VStack,
+  Text,
 } from '@chakra-ui/react';
 import Link from 'next/link';
 import { useContext, useState } from 'react';
@@ -118,7 +119,17 @@ export default function CreateCenarios() {
 
           <Divider my="6" borderColor="blue.700" />
 
-          <VStack spacing="8">
+          <Text fontSize="2xl">
+            Para fazer sua reserva,{' '}
+            <span style={{ color: 'blue', fontWeight: 'bold' }}>
+              <Link href="https://wa.me/5591981115046?text=Ola!%20Estou%20entrando%20em%20contato%20através%20do%20site%20para%20fazer%20minha%20reserva%20para%20a%20Romaria%20Fluvial.">
+                <a target="_blank">clique aqui</a>
+              </Link>{' '}
+            </span>
+            e entre em contato conosco através do <span style={{ color: 'green', fontWeight: 'bold' }}>WhatsApp</span>.
+          </Text>
+
+          {/* <VStack spacing="8">
             <SimpleGrid minChildWidth="240px" spacing={['6', '8']} w="100%">
               <Input {...register('nome')} error={errors.nome} name="nome" label="Nome" placeholder="Informe o seu nome completo" />
               <Input
@@ -156,7 +167,7 @@ export default function CreateCenarios() {
                 Reservar
               </Button>
             </HStack>
-          </Flex>
+          </Flex> */}
         </Box>
       </Flex>
     </Box>

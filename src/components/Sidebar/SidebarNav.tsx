@@ -15,7 +15,7 @@ export function SidebarNav({ color }: any) {
   return (
     <Stack spacing="4" mt="8" align="stretch">
       <NavLink label="Fazer reserva" url="/reserva/create" icon={RiBookmark3Line} color={color} />
-      <NavLink label="Comprar ingresso" url="/posts" icon={RiFileList2Line} color={color} />
+      <NavLink label="Comprar ingresso" url="/ingresso" icon={RiFileList2Line} color={color} />
       {/* <NavLink label="Usuários" url="/users" icon={RiFileUserLine} color={color} />
       <NavLink label="Carteiras" url="/carteiras" icon={RiPantoneLine} color={color} />
       <button onClick={() => logout()}>
