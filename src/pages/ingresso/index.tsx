@@ -25,6 +25,8 @@ import { Sidebar } from '../../components/Sidebar';
 import { GetStaticProps } from 'next';
 import { PurchaseButton } from '../../components/PurchaseButton';
 import { stripe } from '../../services/stripe';
+import { useEffect } from 'react';
+import { signIn, useSession } from 'next-auth/react';
 
 type IngressoProps = {
   product: {
@@ -35,6 +37,13 @@ type IngressoProps = {
 
 export default function Ingresso({ product }: IngressoProps) {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { data: session } = useSession();
+
+  useEffect(() => {
+    if (!session) {
+      signIn('cognito');
+    }
+  }, []);
 
   return (
     <Box>
