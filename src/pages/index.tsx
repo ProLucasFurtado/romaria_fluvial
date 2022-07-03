@@ -30,6 +30,7 @@ import { RichText } from 'prismic-dom';
 import ImageSlider from '../components/ImageSlider';
 import { RiCalendar2Line } from 'react-icons/ri';
 import { useEffect, useState } from 'react';
+import { signIn } from 'next-auth/react';
 
 type Post = {
   slug: string;
@@ -96,7 +97,11 @@ export default function Home({ posts, banners, oracao, agenda, agendaTodos }: Po
         <Modal onClose={onClose} isOpen={isOpen} scrollBehavior={'inside'}>
           <ModalOverlay />
           <ModalContent>
-            <ModalHeader></ModalHeader>
+            <ModalHeader>
+              <Heading color="blue.500" fontSize={'2xl'} fontFamily={'body'}>
+                Oração do Dia
+              </Heading>
+            </ModalHeader>
             <ModalCloseButton />
             <ModalBody>
               <Text dangerouslySetInnerHTML={{ __html: oracao.content }} />
@@ -110,7 +115,11 @@ export default function Home({ posts, banners, oracao, agenda, agendaTodos }: Po
         <Modal onClose={onClose} isOpen={isOpen} scrollBehavior={'inside'} size="xl">
           <ModalOverlay />
           <ModalContent>
-            <ModalHeader></ModalHeader>
+            <ModalHeader>
+              <Heading color="blue.500" fontSize={'2xl'} fontFamily={'body'}>
+                Agenda do Círio
+              </Heading>
+            </ModalHeader>
             <ModalCloseButton />
             <ModalBody>
               {agendaTodos.map((a) => (
@@ -151,8 +160,8 @@ export default function Home({ posts, banners, oracao, agenda, agendaTodos }: Po
         <Sidebar />
 
         <Box flex="1" borderRadius={8}>
-          <Grid templateColumns={['repeat(1, 1fr)', 'repeat(4, 1fr)']} gap={10} mb={20}>
-            <GridItem
+          <Grid templateColumns={['repeat(1, 1fr)', 'repeat(3, 1fr)']} gap={10} mb={20}>
+            {/* <GridItem
               w={'full'}
               bg="gray.900"
               boxShadow={'xl'}
@@ -168,7 +177,7 @@ export default function Home({ posts, banners, oracao, agenda, agendaTodos }: Po
                   </Box>
                 </a>
               </Link>
-            </GridItem>
+            </GridItem> */}
             <GridItem
               w={'full'}
               bg="white"
@@ -212,13 +221,9 @@ export default function Home({ posts, banners, oracao, agenda, agendaTodos }: Po
               justifyContent="center"
               overflow={'hidden'}
             >
-              <Link href={`/`}>
-                <a>
-                  <Box bg={'gray.100'} pos={'relative'}>
-                    <Image src="/assets/images/cadastro.jpg" width="100%" />
-                  </Box>
-                </a>
-              </Link>
+              <Box bg={'gray.100'} pos={'relative'} onClick={() => signIn('cognito')} cursor="pointer">
+                <Image src="/assets/images/cadastro.jpg" width="100%" />
+              </Box>
             </GridItem>
           </Grid>
 

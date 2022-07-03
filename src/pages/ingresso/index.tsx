@@ -1,4 +1,24 @@
-import { Badge, Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Flex, Heading, Stack, Image, Button } from '@chakra-ui/react';
+import {
+  Badge,
+  Box,
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  Flex,
+  Heading,
+  Stack,
+  Image,
+  Button,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton,
+  ModalBody,
+  ModalFooter,
+  useDisclosure,
+  Text,
+} from '@chakra-ui/react';
 import Link from 'next/link';
 import { RiArrowDropRightLine } from 'react-icons/ri';
 import { Sidebar } from '../../components/Sidebar';
@@ -14,8 +34,30 @@ type IngressoProps = {
 };
 
 export default function Ingresso({ product }: IngressoProps) {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
     <Box>
+      <Modal onClose={onClose} isOpen={isOpen} scrollBehavior={'inside'}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>
+            <Heading color="blue.500" fontSize={'2xl'} fontFamily={'body'}>
+              Comprar ingresso com PIX
+            </Heading>
+          </ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <img src="/assets/images/pix-lote1.jpg" alt="" />
+            <Heading fontSize={'xl'} fontFamily={'body'}>
+              Após o pagamento, entre em contato através do WhatsApp (91) 98111-5046
+            </Heading>
+          </ModalBody>
+          <ModalFooter>
+            <Button onClick={onClose}>Fechar</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
       <Flex w="100%" maxWidth={1480} mx="auto" my="6">
         <Sidebar />
 
@@ -46,9 +88,9 @@ export default function Ingresso({ product }: IngressoProps) {
           </Heading>
           <Stack>
             <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
-              <Image src="/assets/images/promocao.jpg" alt="Ingresso Romaria Fluvial" />
+              <Image src="/assets/images/compra_online.jpg" alt="Ingresso Romaria Fluvial" />
 
-              <Box p="6">
+              <Box p="4" textAlign="center">
                 <Box display="flex" alignItems="baseline">
                   <Badge borderRadius="full" px="2" colorScheme="teal">
                     1º Lote
@@ -58,27 +100,37 @@ export default function Ingresso({ product }: IngressoProps) {
                   </Box> */}
                 </Box>
 
-                <Box mt="1" fontWeight="semibold" as="h4" lineHeight="tight" noOfLines={1}>
+                {/* <Box mt="1" fontWeight="semibold" as="h4" lineHeight="tight" noOfLines={1}>
                   Romaria Fluvial
-                </Box>
+                </Box> */}
 
-                <Box>
+                <Heading as="h2" size="xl" color="coral">
                   {product.amount}
-                  {/* <Box as="span" color="gray.600" fontSize="sm">
-                    / wk
-                  </Box> */}
-                </Box>
-                <Flex>
+                </Heading>
+                <Text as="span" color="gray.600" fontSize="sm">
+                  Cartão de crédito ou Boleto
+                </Text>
+                <Heading as="h2" size="lg" color="coral">
+                  <Text as="span" color="gray.600" fontSize="sm">
+                    ou{' '}
+                  </Text>
+                  R$ 257
+                </Heading>
+                <Text as="span" color="gray.600" fontSize="sm">
+                  no Pix
+                </Text>
+                <Flex justify="space-around" mt="4">
                   <PurchaseButton priceId={product.priceId} />
                   <Button
-                    colorScheme="green"
+                    colorScheme="blue"
+                    size="lg"
                     _disabled={{
                       bg: 'blue.500',
                       cursor: 'default',
                     }}
-                    onClick={() => {}}
+                    onClick={onOpen}
                   >
-                    Comprar com cartão ou boleto
+                    Pix
                   </Button>
                 </Flex>
 
@@ -105,7 +157,7 @@ export default function Ingresso({ product }: IngressoProps) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const price = await stripe.prices.retrieve('price_1L9MSfIlFvwTQhF4mOCfKdGN');
+  const price = await stripe.prices.retrieve('price_1LHKwAIlFvwTQhF4ybdTdA8n');
 
   let product = {
     priceId: '',
@@ -126,6 +178,6 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       product,
     },
-    revalidate: 60 * 60 * 24, // 24 horas
+    revalidate: 60 * 60, // 24 horas
   };
 };

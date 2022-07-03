@@ -25,7 +25,7 @@ export function PurchaseButton({ priceId }: PurchaseButtonProps) {
 
       await stripe?.redirectToCheckout({ sessionId });
     } catch (error) {
-      alert('Houve um erro!');
+      signIn('cognito');
     }
   }
 
@@ -37,8 +37,9 @@ export function PurchaseButton({ priceId }: PurchaseButtonProps) {
         cursor: 'default',
       }}
       onClick={handlePurchase}
+      size="lg"
     >
-      Comprar com cartão ou boleto
+      C. Crédito ou Boleto
     </Button>
   );
 }
