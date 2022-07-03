@@ -25,6 +25,10 @@ export function PurchaseButton({ priceId }: PurchaseButtonProps) {
 
       await stripe?.redirectToCheckout({ sessionId });
     } catch (error) {
+      if (!session) {
+        signIn('cognito');
+        return;
+      }
       alert('Houve um erro!');
       console.log('error', error);
     }

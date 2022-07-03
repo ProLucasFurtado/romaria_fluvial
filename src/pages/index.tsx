@@ -506,7 +506,8 @@ export const getStaticProps: GetStaticProps = async () => {
         minute: '2-digit',
       }),
       dateend:
-        new Date(post.data.dateend).toLocaleDateString('pt-BR', { year: 'numeric' }) !== '1969'
+        new Date(post.data.dateend).toLocaleDateString('pt-BR', { year: 'numeric' }) !== '1969' ||
+        new Date(post.data.dateend).toLocaleDateString('pt-BR', { year: 'numeric' }) !== '1970'
           ? new Date(post.data.dateend).toLocaleDateString('pt-BR', {
               day: '2-digit',
               month: 'long',
