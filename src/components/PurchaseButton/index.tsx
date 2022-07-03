@@ -11,11 +11,6 @@ export function PurchaseButton({ priceId }: PurchaseButtonProps) {
   const session = useSession();
 
   async function handlePurchase() {
-    if (!session) {
-      signIn('cognito');
-      return;
-    }
-
     try {
       const response = await api.post('purchase');
 
@@ -25,19 +20,19 @@ export function PurchaseButton({ priceId }: PurchaseButtonProps) {
 
       await stripe?.redirectToCheckout({ sessionId });
     } catch (error) {
-      signIn('cognito');
+      alert('Houve um erro!');
     }
   }
 
   return (
     <Button
       colorScheme="green"
+      size="lg"
       _disabled={{
         bg: 'blue.500',
         cursor: 'default',
       }}
       onClick={handlePurchase}
-      size="lg"
     >
       C. Crédito ou Boleto
     </Button>
