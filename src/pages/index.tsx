@@ -29,7 +29,7 @@ import * as prismic from '@prismicio/client';
 import { RichText } from 'prismic-dom';
 import ImageSlider from '../components/ImageSlider';
 import { RiCalendar2Line } from 'react-icons/ri';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 type Post = {
   slug: string;
@@ -63,6 +63,7 @@ interface PostsProps {
   banners: Banner[];
   oracao: Oracao;
   agenda: Agenda[];
+  agendaTodos: Agenda[];
 }
 
 const deviceType = () => {
@@ -75,8 +76,9 @@ const deviceType = () => {
   return 'desktop';
 };
 
-export default function Home({ posts, banners, oracao, agenda }: PostsProps) {
+export default function Home({ posts, banners, oracao, agenda, agendaTodos }: PostsProps) {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [isModal, setIsModal] = useState('');
 
   const newBanners = banners.map((banner: any) => {
     return {
@@ -90,19 +92,57 @@ export default function Home({ posts, banners, oracao, agenda }: PostsProps) {
 
   return (
     <Box>
-      <Modal onClose={onClose} isOpen={isOpen} scrollBehavior={'inside'}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader></ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <Text dangerouslySetInnerHTML={{ __html: oracao.content }} />
-          </ModalBody>
-          <ModalFooter>
-            <Button onClick={onClose}>Fechar</Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+      {isModal === 'oracao' ? (
+        <Modal onClose={onClose} isOpen={isOpen} scrollBehavior={'inside'}>
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader></ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>
+              <Text dangerouslySetInnerHTML={{ __html: oracao.content }} />
+            </ModalBody>
+            <ModalFooter>
+              <Button onClick={onClose}>Fechar</Button>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
+      ) : (
+        <Modal onClose={onClose} isOpen={isOpen} scrollBehavior={'inside'} size="xl">
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader></ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>
+              {agendaTodos.map((a) => (
+                <Stack mb="2" key={a.event}>
+                  <Flex justify="flex-start" align="center">
+                    <Icon as={RiCalendar2Line} color="gray.500" mr="2" />
+                    <Heading color="gray.500" fontSize={'sm'}>
+                      {a.datestart}
+                    </Heading>
+                    {a.dateend && (
+                      <Heading color="gray.500" fontSize={'sm'} m="2">
+                        a
+                      </Heading>
+                    )}
+                    {a.dateend && (
+                      <Heading color="gray.500" fontSize={'sm'}>
+                        {a.dateend}
+                      </Heading>
+                    )}
+                  </Flex>
+                  <Heading color="gray.700" fontSize={'md'}>
+                    {a.event}
+                  </Heading>
+                </Stack>
+              ))}
+            </ModalBody>
+            <ModalFooter>
+              <Button onClick={onClose}>Fechar</Button>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
+      )}
       <Box w={'full'} boxShadow={'xl'} alignContent="center" justifyContent="center" mb={10} bg="blue.600">
         <ImageSlider slides={newBanners} mt="auto" />
       </Box>
@@ -212,7 +252,18 @@ export default function Home({ posts, banners, oracao, agenda }: PostsProps) {
                     {oracao.description}
                   </Text>
                   <Flex justify="flex-end">
-                    <Button onClick={onOpen} border="0" bg="blue.500" color="blue.50" borderRadius={4} px="4" py="1">
+                    <Button
+                      onClick={() => {
+                        onOpen();
+                        setIsModal('oracao');
+                      }}
+                      border="0"
+                      bg="blue.500"
+                      color="blue.50"
+                      borderRadius={4}
+                      px="4"
+                      py="1"
+                    >
                       Ler mais
                     </Button>
                   </Flex>
@@ -256,11 +307,20 @@ export default function Home({ posts, banners, oracao, agenda }: PostsProps) {
                     </Stack>
                   ))}
                   <Flex justify="flex-end">
-                    <Box bg="blue.500" color="blue.50" borderRadius={4} px="4" py="1">
-                      <Link href="/posts">
-                        <a>Ver todos</a>
-                      </Link>
-                    </Box>
+                    <Button
+                      onClick={() => {
+                        onOpen();
+                        setIsModal('agenda');
+                      }}
+                      border="0"
+                      bg="blue.500"
+                      color="blue.50"
+                      borderRadius={4}
+                      px="4"
+                      py="1"
+                    >
+                      Ver todos
+                    </Button>
                   </Flex>
                 </Box>
               </Stack>
@@ -333,6 +393,10 @@ export const getStaticProps: GetStaticProps = async () => {
     predicates: prismic.predicate.at('document.type', 'posts'),
     lang: 'pt-br',
     pageSize: 3,
+    orderings: {
+      field: 'document.last_publication_date',
+      direction: 'desc',
+    },
   });
 
   const posts = responsePosts.results.map((post) => {
@@ -354,6 +418,10 @@ export const getStaticProps: GetStaticProps = async () => {
   const responseBanners = await client.get({
     predicates: prismic.predicate.at('document.type', 'banner'),
     lang: 'pt-br',
+    orderings: {
+      field: 'document.last_publication_date',
+      direction: 'desc',
+    },
   });
 
   const banners = responseBanners.results.map((banner) => {
@@ -366,6 +434,10 @@ export const getStaticProps: GetStaticProps = async () => {
   const responseOracao = await client.getFirst({
     predicates: prismic.predicate.at('document.type', 'oracao-do-dia'),
     lang: 'pt-br',
+    orderings: {
+      field: 'document.last_publication_date',
+      direction: 'desc',
+    },
   });
 
   const oracao = {
@@ -383,6 +455,19 @@ export const getStaticProps: GetStaticProps = async () => {
     predicates: prismic.predicate.at('document.type', 'agenda-do-cirio'),
     lang: 'pt-br',
     pageSize: 3,
+    orderings: {
+      field: 'my.agenda-do-cirio.datestart',
+      direction: 'asc',
+    },
+  });
+
+  const responseAgendaTodos = await client.get({
+    predicates: prismic.predicate.at('document.type', 'agenda-do-cirio'),
+    lang: 'pt-br',
+    orderings: {
+      field: 'my.agenda-do-cirio.datestart',
+      direction: 'asc',
+    },
   });
 
   const agenda = responseAgenda.results.map((post) => {
@@ -405,12 +490,36 @@ export const getStaticProps: GetStaticProps = async () => {
     };
   });
 
+  const agendaTodos = responseAgendaTodos.results.map((post) => {
+    return {
+      event: RichText.asText(post.data.event),
+      datestart: new Date(post.data.datestart).toLocaleDateString('pt-BR', {
+        day: '2-digit',
+        month: 'long',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+      }),
+      dateend:
+        new Date(post.data.dateend).toLocaleDateString('pt-BR', { year: 'numeric' }) !== '1969'
+          ? new Date(post.data.dateend).toLocaleDateString('pt-BR', {
+              day: '2-digit',
+              month: 'long',
+              year: 'numeric',
+              hour: '2-digit',
+              minute: '2-digit',
+            })
+          : null,
+    };
+  });
+
   return {
     props: {
       posts,
       banners,
       oracao,
       agenda,
+      agendaTodos,
     },
     revalidate: 60 * 60,
   };
