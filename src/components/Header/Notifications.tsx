@@ -1,6 +1,7 @@
 import { HStack, Icon, Link as ChakraLink, Tooltip, Text, Flex, useBreakpointValue } from '@chakra-ui/react';
 import Router from 'next/router';
 import {
+  RiCalendar2Line,
   RiChat3Line,
   RiFileList2Line,
   RiHome4Line,
@@ -37,12 +38,22 @@ export function Notifications() {
           </Flex>
         </ChakraLink>
       </Link>
-      <Link href="/sobre" prefetch passHref>
+      {/* <Link href="/sobre" prefetch passHref>
         <ChakraLink>
           <Flex align="center" justify="center">
             <Icon as={RiShipLine} fontSize="20" />
             <Text fontSize="sm" ml="1">
               A Romaria
+            </Text>
+          </Flex>
+        </ChakraLink>
+      </Link> */}
+      <Link href="/agenda-do-cirio" prefetch passHref>
+        <ChakraLink>
+          <Flex align="center" justify="center">
+            <Icon as={RiCalendar2Line} fontSize="20" />
+            <Text fontSize="sm" ml="1">
+              Agenda do círio
             </Text>
           </Flex>
         </ChakraLink>

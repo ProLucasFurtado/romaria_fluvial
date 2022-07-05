@@ -346,7 +346,7 @@ export default function Home({ posts, banners, oracao, agenda, agendaTodos }: Po
             </BreadcrumbItem>
           </Breadcrumb>
 
-          <Grid templateColumns={['repeat(1, 1fr)', 'repeat(3, 1fr)']} gap={10} mb={10}>
+          <Grid templateColumns={['repeat(1, 1fr)', 'repeat(4, 1fr)']} gap={10} mb={10}>
             {posts.map((post) => (
               <GridItem
                 key={post.slug}
@@ -397,7 +397,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const responsePosts = await client.get({
     predicates: prismic.predicate.at('document.type', 'posts'),
     lang: 'pt-br',
-    pageSize: 3,
+    pageSize: 4,
     orderings: {
       field: 'document.last_publication_date',
       direction: 'desc',
