@@ -29,9 +29,11 @@ type Agenda = {
   dateend: string;
 };
 
-export default function Ingresso({ agendaTodos }: Agenda[]) {
-  console.log('agendaTodos', JSON.stringify(agendaTodos, 0, 2));
+type AgendaProps = {
+  agendaTodos: Agenda[];
+};
 
+export default function Ingresso({ agendaTodos }: AgendaProps) {
   return (
     <Box>
       <Flex w="100%" maxWidth={1480} mx="auto" my="6">
