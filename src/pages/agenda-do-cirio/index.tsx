@@ -62,7 +62,7 @@ export default function Ingresso({ agendaTodos }: AgendaProps) {
             </BreadcrumbItem>
           </Breadcrumb>
           <Heading color="gray.700" fontSize={['3xl', '5xl']} mb="6" mt={['5', '20']} fontFamily={'body'}>
-            Romaria Fluvial 2022
+            Agenda do círio
           </Heading>
           <Stack align="center">
             <Box maxW="3xl" overflow="hidden">
