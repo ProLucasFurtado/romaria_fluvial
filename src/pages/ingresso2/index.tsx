@@ -23,7 +23,7 @@ import Link from 'next/link';
 import { RiArrowDropRightLine } from 'react-icons/ri';
 import { Sidebar } from '../../components/Sidebar';
 import { GetStaticProps } from 'next';
-import { PurchaseButton } from '../../components/PurchaseButton';
+import { PurchaseButton2 } from '../../components/PurchaseButton2';
 import { stripe } from '../../services/stripe';
 import { useEffect } from 'react';
 import { signIn, useSession } from 'next-auth/react';
@@ -129,7 +129,7 @@ export default function Ingresso({ product }: IngressoProps) {
                   no Pix
                 </Text>
                 <Flex justify="space-around" mt="4">
-                  <PurchaseButton priceId={product.priceId} />
+                  <PurchaseButton2 priceId={product.priceId} />
                   <Button
                     colorScheme="blue"
                     size="lg"
