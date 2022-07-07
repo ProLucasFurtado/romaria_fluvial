@@ -22,7 +22,7 @@ import {
 import Link from 'next/link';
 import { RiArrowDropRightLine } from 'react-icons/ri';
 import { Sidebar } from '../../components/Sidebar';
-import { GetStaticProps } from 'next';
+import { GetServerSideProps } from 'next';
 import { PurchaseButton } from '../../components/PurchaseButton';
 import { stripe } from '../../services/stripe';
 import { useEffect } from 'react';
@@ -165,7 +165,7 @@ export default function Ingresso({ product }: IngressoProps) {
   );
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const price = await stripe.prices.retrieve('price_1LHKwAIlFvwTQhF4ybdTdA8n');
 
   let product = {
@@ -187,6 +187,5 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       product,
     },
-    revalidate: 60 * 60, // 24 horas
   };
 };
