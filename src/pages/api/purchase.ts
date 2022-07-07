@@ -42,7 +42,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       customer: customerId,
       payment_method_types: ['card', 'boleto'],
       billing_address_collection: 'auto',
-      line_items: [{ price: 'price_1LIxqOIlFvwTQhF4Feh5KUoT', quantity: 1 }],
+      line_items: [{ price: 'price_1LIyTzIlFvwTQhF4FYWDj6L7', quantity: 1 }],
       mode: 'payment',
       allow_promotion_codes: true,
       success_url: process.env.STRIPE_SUCCESS_URL ?? '',
