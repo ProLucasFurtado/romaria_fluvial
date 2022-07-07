@@ -143,10 +143,6 @@ export default function Ingresso({ product }: IngressoProps) {
                   </Button>
                 </Flex>
 
-                <Link href="/ingresso2">
-                  <a>Teste</a>
-                </Link>
-
                 {/* <Box display="flex" mt="2" alignItems="center">
                   {Array(5)
                     .fill('')
