@@ -6,6 +6,7 @@ import { GetStaticProps } from 'next';
 import { getPrismicClient } from '../../services/prismic';
 import * as prismic from '@prismicio/client';
 import { RichText } from 'prismic-dom';
+import { HeadSite } from '../../components/Head';
 
 type Post = {
   slug: string;
@@ -22,69 +23,72 @@ interface PostsProps {
 
 export default function Posts({ posts }: PostsProps) {
   return (
-    <Box>
-      <Flex w="100%" maxWidth={1480} mx="auto" my="6">
-        <Sidebar />
+    <>
+      <HeadSite />
+      <Box>
+        <Flex w="100%" maxWidth={1480} mx="auto" my="6">
+          <Sidebar />
 
-        <Box flex="1" borderRadius={8} bg="whiteAlpha.800" p="8">
-          <Breadcrumb
-            bg="blue.400"
-            color="white"
-            borderRadius={4}
-            px="3"
-            py="1"
-            fontSize="sm"
-            marginBottom="6"
-            spacing="8px"
-            separator={<RiArrowDropRightLine color="gray.500" />}
-          >
-            <BreadcrumbItem>
-              <Link href="/" passHref>
-                <BreadcrumbLink>Home</BreadcrumbLink>
-              </Link>
-            </BreadcrumbItem>
-
-            <BreadcrumbItem isCurrentPage>
-              <BreadcrumbLink href="#">Posts</BreadcrumbLink>
-            </BreadcrumbItem>
-          </Breadcrumb>
-
-          <Grid templateColumns={['repeat(1, 1fr)', 'repeat(3, 1fr)']} gap={6}>
-            {posts.map((post) => (
-              <GridItem
-                key={post.slug}
-                w={'full'}
-                bg="blue.600"
-                boxShadow={'xl'}
-                rounded={'md'}
-                alignContent="center"
-                justifyContent="center"
-                overflow={'hidden'}
-              >
-                <Link href={`/posts/${post.slug}`}>
-                  <a>
-                    <Box>
-                      <Image src={post.image} width="100%" />
-                    </Box>
-                    <Stack p={6}>
-                      <Stack direction={'column'} spacing={0} fontSize={'sm'}>
-                        <Text color="whiteAlpha.500">{post.updatedAt}</Text>
-                      </Stack>
-                      <Heading color="whiteAlpha.900" fontSize={'2xl'} fontFamily={'body'}>
-                        {post.title}
-                      </Heading>
-                      <Text color="whiteAlpha.800">{post.subtitle}</Text>
-                    </Stack>
-                  </a>
+          <Box flex="1" borderRadius={8} bg="whiteAlpha.800" p="8">
+            <Breadcrumb
+              bg="blue.400"
+              color="white"
+              borderRadius={4}
+              px="3"
+              py="1"
+              fontSize="sm"
+              marginBottom="6"
+              spacing="8px"
+              separator={<RiArrowDropRightLine color="gray.500" />}
+            >
+              <BreadcrumbItem>
+                <Link href="/" passHref>
+                  <BreadcrumbLink>Home</BreadcrumbLink>
                 </Link>
-              </GridItem>
-            ))}
-          </Grid>
+              </BreadcrumbItem>
 
-          {/* <Pagination /> */}
-        </Box>
-      </Flex>
-    </Box>
+              <BreadcrumbItem isCurrentPage>
+                <BreadcrumbLink href="#">Posts</BreadcrumbLink>
+              </BreadcrumbItem>
+            </Breadcrumb>
+
+            <Grid templateColumns={['repeat(1, 1fr)', 'repeat(3, 1fr)']} gap={6}>
+              {posts.map((post) => (
+                <GridItem
+                  key={post.slug}
+                  w={'full'}
+                  bg="blue.600"
+                  boxShadow={'xl'}
+                  rounded={'md'}
+                  alignContent="center"
+                  justifyContent="center"
+                  overflow={'hidden'}
+                >
+                  <Link href={`/posts/${post.slug}`}>
+                    <a>
+                      <Box>
+                        <Image src={post.image} width="100%" />
+                      </Box>
+                      <Stack p={6}>
+                        <Stack direction={'column'} spacing={0} fontSize={'sm'}>
+                          <Text color="whiteAlpha.500">{post.updatedAt}</Text>
+                        </Stack>
+                        <Heading color="whiteAlpha.900" fontSize={'2xl'} fontFamily={'body'}>
+                          {post.title}
+                        </Heading>
+                        <Text color="whiteAlpha.800">{post.subtitle}</Text>
+                      </Stack>
+                    </a>
+                  </Link>
+                </GridItem>
+              ))}
+            </Grid>
+
+            {/* <Pagination /> */}
+          </Box>
+        </Flex>
+      </Box>
+    </>
   );
 }
 

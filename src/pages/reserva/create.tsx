@@ -26,6 +26,7 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { getSession } from 'next-auth/react';
 import { GetServerSideProps } from 'next';
+import { HeadSite } from '../../components/Head';
 
 type CreateFormData = {
   nome_cenario: string;
@@ -79,57 +80,59 @@ export default function CreateCenarios() {
   };
 
   return (
-    <Box>
-      <Flex w="100%" maxWidth={1480} mx="auto" my="6">
-        <Sidebar />
+    <>
+      <HeadSite />
+      <Box>
+        <Flex w="100%" maxWidth={1480} mx="auto" my="6">
+          <Sidebar />
 
-        <Box flex="1" borderRadius={8} bg="whiteAlpha.800" p="8">
-          <Breadcrumb
-            bg="blue.400"
-            color="white"
-            borderRadius={4}
-            px="3"
-            py="1"
-            fontSize="sm"
-            marginBottom="6"
-            spacing="8px"
-            separator={<RiArrowDropRightLine color="gray.500" />}
-          >
-            <BreadcrumbItem>
-              <Link href="/" passHref>
-                <BreadcrumbLink>Home</BreadcrumbLink>
-              </Link>
-            </BreadcrumbItem>
+          <Box flex="1" borderRadius={8} bg="whiteAlpha.800" p="8">
+            <Breadcrumb
+              bg="blue.400"
+              color="white"
+              borderRadius={4}
+              px="3"
+              py="1"
+              fontSize="sm"
+              marginBottom="6"
+              spacing="8px"
+              separator={<RiArrowDropRightLine color="gray.500" />}
+            >
+              <BreadcrumbItem>
+                <Link href="/" passHref>
+                  <BreadcrumbLink>Home</BreadcrumbLink>
+                </Link>
+              </BreadcrumbItem>
 
-            <BreadcrumbItem>
-              <Link href="/reserva" passHref>
-                <BreadcrumbLink>Reserva</BreadcrumbLink>
-              </Link>
-            </BreadcrumbItem>
+              <BreadcrumbItem>
+                <Link href="/reserva" passHref>
+                  <BreadcrumbLink>Reserva</BreadcrumbLink>
+                </Link>
+              </BreadcrumbItem>
 
-            <BreadcrumbItem isCurrentPage>
-              <BreadcrumbLink href="#">Fazer reserva</BreadcrumbLink>
-            </BreadcrumbItem>
-          </Breadcrumb>
-          <Flex direction="column">
-            <Heading size="lg" fontWeight="normal">
-              Fazer reserva
-            </Heading>
-          </Flex>
+              <BreadcrumbItem isCurrentPage>
+                <BreadcrumbLink href="#">Fazer reserva</BreadcrumbLink>
+              </BreadcrumbItem>
+            </Breadcrumb>
+            <Flex direction="column">
+              <Heading size="lg" fontWeight="normal">
+                Fazer reserva
+              </Heading>
+            </Flex>
 
-          <Divider my="6" borderColor="blue.700" />
+            <Divider my="6" borderColor="blue.700" />
 
-          <Text fontSize="2xl">
-            Para fazer sua reserva,{' '}
-            <span style={{ color: 'blue', fontWeight: 'bold' }}>
-              <Link href="https://wa.me/5591981115046?text=Ola!%20Estou%20entrando%20em%20contato%20através%20do%20site%20para%20fazer%20minha%20reserva%20para%20a%20Romaria%20Fluvial.">
-                <a target="_blank">clique aqui</a>
-              </Link>{' '}
-            </span>
-            e entre em contato conosco através do <span style={{ color: 'green', fontWeight: 'bold' }}>WhatsApp</span>.
-          </Text>
+            <Text fontSize="2xl">
+              Para fazer sua reserva,{' '}
+              <span style={{ color: 'blue', fontWeight: 'bold' }}>
+                <Link href="https://wa.me/5591981115046?text=Ola!%20Estou%20entrando%20em%20contato%20através%20do%20site%20para%20fazer%20minha%20reserva%20para%20a%20Romaria%20Fluvial.">
+                  <a target="_blank">clique aqui</a>
+                </Link>{' '}
+              </span>
+              e entre em contato conosco através do <span style={{ color: 'green', fontWeight: 'bold' }}>WhatsApp</span>.
+            </Text>
 
-          {/* <VStack spacing="8">
+            {/* <VStack spacing="8">
             <SimpleGrid minChildWidth="240px" spacing={['6', '8']} w="100%">
               <Input {...register('nome')} error={errors.nome} name="nome" label="Nome" placeholder="Informe o seu nome completo" />
               <Input
@@ -168,8 +171,9 @@ export default function CreateCenarios() {
               </Button>
             </HStack>
           </Flex> */}
-        </Box>
-      </Flex>
-    </Box>
+          </Box>
+        </Flex>
+      </Box>
+    </>
   );
 }

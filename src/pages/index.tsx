@@ -31,6 +31,7 @@ import ImageSlider from '../components/ImageSlider';
 import { RiCalendar2Line } from 'react-icons/ri';
 import { useEffect, useState } from 'react';
 import { signIn } from 'next-auth/react';
+import { HeadSite } from '../components/Head';
 
 type Post = {
   slug: string;
@@ -92,76 +93,78 @@ export default function Home({ posts, banners, oracao, agenda, agendaTodos }: Po
   useEffect(() => {}, []);
 
   return (
-    <Box>
-      {isModal === 'oracao' ? (
-        <Modal onClose={onClose} isOpen={isOpen} scrollBehavior={'inside'}>
-          <ModalOverlay />
-          <ModalContent>
-            <ModalHeader>
-              <Heading color="blue.500" fontSize={'2xl'} fontFamily={'body'}>
-                Oração do Dia
-              </Heading>
-            </ModalHeader>
-            <ModalCloseButton />
-            <ModalBody>
-              <Text dangerouslySetInnerHTML={{ __html: oracao.content }} />
-            </ModalBody>
-            <ModalFooter>
-              <Button onClick={onClose}>Fechar</Button>
-            </ModalFooter>
-          </ModalContent>
-        </Modal>
-      ) : (
-        <Modal onClose={onClose} isOpen={isOpen} scrollBehavior={'inside'} size="xl">
-          <ModalOverlay />
-          <ModalContent>
-            <ModalHeader>
-              <Heading color="blue.500" fontSize={'2xl'} fontFamily={'body'}>
-                Agenda do Círio
-              </Heading>
-            </ModalHeader>
-            <ModalCloseButton />
-            <ModalBody>
-              {agendaTodos.map((a) => (
-                <Stack mb="2" key={a.event}>
-                  <Flex justify="flex-start" align="center">
-                    <Icon as={RiCalendar2Line} color="gray.500" mr="2" />
-                    <Heading color="gray.500" fontSize={'sm'}>
-                      {a.datestart}
-                    </Heading>
-                    {a.dateend && (
-                      <Heading color="gray.500" fontSize={'sm'} m="2">
-                        a
-                      </Heading>
-                    )}
-                    {a.dateend && (
+    <>
+      <HeadSite />
+      <Box>
+        {isModal === 'oracao' ? (
+          <Modal onClose={onClose} isOpen={isOpen} scrollBehavior={'inside'}>
+            <ModalOverlay />
+            <ModalContent>
+              <ModalHeader>
+                <Heading color="blue.500" fontSize={'2xl'} fontFamily={'body'}>
+                  Oração do Dia
+                </Heading>
+              </ModalHeader>
+              <ModalCloseButton />
+              <ModalBody>
+                <Text dangerouslySetInnerHTML={{ __html: oracao.content }} />
+              </ModalBody>
+              <ModalFooter>
+                <Button onClick={onClose}>Fechar</Button>
+              </ModalFooter>
+            </ModalContent>
+          </Modal>
+        ) : (
+          <Modal onClose={onClose} isOpen={isOpen} scrollBehavior={'inside'} size="xl">
+            <ModalOverlay />
+            <ModalContent>
+              <ModalHeader>
+                <Heading color="blue.500" fontSize={'2xl'} fontFamily={'body'}>
+                  Agenda do Círio
+                </Heading>
+              </ModalHeader>
+              <ModalCloseButton />
+              <ModalBody>
+                {agendaTodos.map((a) => (
+                  <Stack mb="2" key={a.event}>
+                    <Flex justify="flex-start" align="center">
+                      <Icon as={RiCalendar2Line} color="gray.500" mr="2" />
                       <Heading color="gray.500" fontSize={'sm'}>
-                        {a.dateend}
+                        {a.datestart}
                       </Heading>
-                    )}
-                  </Flex>
-                  <Heading color="gray.700" fontSize={'md'}>
-                    {a.event}
-                  </Heading>
-                </Stack>
-              ))}
-            </ModalBody>
-            <ModalFooter>
-              <Button onClick={onClose}>Fechar</Button>
-            </ModalFooter>
-          </ModalContent>
-        </Modal>
-      )}
-      <Box w={'full'} boxShadow={'xl'} alignContent="center" justifyContent="center" mb={10} bg="blue.600">
-        <ImageSlider slides={newBanners} mt="auto" />
-      </Box>
+                      {a.dateend && (
+                        <Heading color="gray.500" fontSize={'sm'} m="2">
+                          a
+                        </Heading>
+                      )}
+                      {a.dateend && (
+                        <Heading color="gray.500" fontSize={'sm'}>
+                          {a.dateend}
+                        </Heading>
+                      )}
+                    </Flex>
+                    <Heading color="gray.700" fontSize={'md'}>
+                      {a.event}
+                    </Heading>
+                  </Stack>
+                ))}
+              </ModalBody>
+              <ModalFooter>
+                <Button onClick={onClose}>Fechar</Button>
+              </ModalFooter>
+            </ModalContent>
+          </Modal>
+        )}
+        <Box w={'full'} boxShadow={'xl'} alignContent="center" justifyContent="center" mb={10} bg="blue.600">
+          <ImageSlider slides={newBanners} mt="auto" />
+        </Box>
 
-      <Flex w="100%" maxWidth={1480} p="6" mx="auto">
-        <Sidebar />
+        <Flex w="100%" maxWidth={1480} p="6" mx="auto">
+          <Sidebar />
 
-        <Box flex="1" borderRadius={8}>
-          <Grid templateColumns={['repeat(1, 1fr)', 'repeat(3, 1fr)']} gap={10} mb={20}>
-            {/* <GridItem
+          <Box flex="1" borderRadius={8}>
+            <Grid templateColumns={['repeat(1, 1fr)', 'repeat(3, 1fr)']} gap={10} mb={20}>
+              {/* <GridItem
               w={'full'}
               bg="gray.900"
               boxShadow={'xl'}
@@ -178,216 +181,217 @@ export default function Home({ posts, banners, oracao, agenda, agendaTodos }: Po
                 </a>
               </Link>
             </GridItem> */}
-            <GridItem
-              w={'full'}
-              bg="white"
-              boxShadow={'xl'}
-              rounded={'md'}
-              alignContent="center"
-              justifyContent="center"
-              overflow={'hidden'}
-            >
-              <Link href={`/ingresso`}>
-                <a>
-                  <Box bg={'gray.100'} pos={'relative'}>
-                    <Image src="/assets/images/compra_online.jpg" width="100%" />
-                  </Box>
-                </a>
-              </Link>
-            </GridItem>
-            <GridItem
-              w={'full'}
-              bg="white"
-              boxShadow={'xl'}
-              rounded={'md'}
-              alignContent="center"
-              justifyContent="center"
-              overflow={'hidden'}
-            >
-              <Link href={`/reserva/create`}>
-                <a>
-                  <Box bg={'gray.100'} pos={'relative'}>
-                    <Image src="/assets/images/reserva.jpg" width="100%" />
-                  </Box>
-                </a>
-              </Link>
-            </GridItem>
-            <GridItem
-              w={'full'}
-              bg="white"
-              boxShadow={'xl'}
-              rounded={'md'}
-              alignContent="center"
-              justifyContent="center"
-              overflow={'hidden'}
-            >
-              <Box bg={'gray.100'} pos={'relative'} onClick={() => signIn('cognito')} cursor="pointer">
-                <Image src="/assets/images/cadastro.jpg" width="100%" />
-              </Box>
-            </GridItem>
-          </Grid>
-
-          <Flex mb={20} gap={10} direction={['column', 'row']}>
-            <Flex
-              w={'full'}
-              direction={['column', 'row']}
-              bg="white"
-              boxShadow={'xl'}
-              rounded={'md'}
-              alignContent="center"
-              justifyContent="space-between"
-              overflow={'hidden'}
-            >
-              <Box bg={'gray.100'} pos={'relative'} w={['100%', '350px']}>
-                <Link href={`/`}>
-                  <a>
-                    <Image src="assets/images/oracao.jpg" w="100%" />
-                  </a>
-                </Link>
-              </Box>
-              <Stack p={6} flex="1">
-                <Flex direction="column" justify="flex-end">
-                  <Heading color="blue.500" fontSize={'2xl'} fontFamily={'body'} mb="2">
-                    Oração do Dia
-                  </Heading>
-                  <Heading color="gray.700" fontSize={'md'}>
-                    {oracao.title}
-                  </Heading>
-                  <Text color={'gray.500'} mb="4">
-                    {oracao.description}
-                  </Text>
-                  <Flex justify="flex-end">
-                    <Button
-                      onClick={() => {
-                        onOpen();
-                        setIsModal('oracao');
-                      }}
-                      border="0"
-                      bg="blue.500"
-                      color="blue.50"
-                      borderRadius={4}
-                      px="4"
-                      py="1"
-                    >
-                      Ler mais
-                    </Button>
-                  </Flex>
-                </Flex>
-              </Stack>
-            </Flex>
-            <Flex
-              w={'full'}
-              direction={['column', 'row']}
-              bg="white"
-              boxShadow={'xl'}
-              rounded={'md'}
-              alignContent="center"
-              justifyContent="space-between"
-              overflow={'hidden'}
-            >
-              <Box bg={'gray.100'} pos={'relative'} w={['100%', '350px']}>
-                <Link href={`/`}>
-                  <a>
-                    <Image src="assets/images/agenda-cirio.jpg" w="100%" />
-                  </a>
-                </Link>
-              </Box>
-              <Stack p={6} flex="1">
-                <Heading color="blue.500" fontSize={'2xl'} fontFamily={'body'} mb="2">
-                  Agenda do Círio
-                </Heading>
-
-                <Box>
-                  {agenda.map((a) => (
-                    <Stack mb="2" key={a.event}>
-                      <Flex>
-                        <Icon as={RiCalendar2Line} color="gray.500" mr="2" />
-                        <Heading color="gray.500" fontSize={'sm'}>
-                          {a.datestart}
-                        </Heading>
-                      </Flex>
-                      <Heading color="gray.700" fontSize={'md'}>
-                        {a.event}
-                      </Heading>
-                    </Stack>
-                  ))}
-                  <Flex justify="flex-end">
-                    <Button
-                      onClick={() => {
-                        onOpen();
-                        setIsModal('agenda');
-                      }}
-                      border="0"
-                      bg="blue.500"
-                      color="blue.50"
-                      borderRadius={4}
-                      px="4"
-                      py="1"
-                    >
-                      Ver todos
-                    </Button>
-                  </Flex>
-                </Box>
-              </Stack>
-            </Flex>
-          </Flex>
-
-          <Breadcrumb borderBottom="4px" borderColor="blue.500" color="blue.500" marginBottom={10}>
-            <BreadcrumbItem display="flex" justifyContent="space-between">
-              <Link href="" passHref>
-                {' '}
-              </Link>
-              <Link href="/posts" passHref>
-                <BreadcrumbLink fontSize="3xl">Destaques</BreadcrumbLink>
-              </Link>
-              <Link href="" passHref>
-                {' '}
-              </Link>
-            </BreadcrumbItem>
-          </Breadcrumb>
-
-          <Grid templateColumns={['repeat(1, 1fr)', 'repeat(4, 1fr)']} gap={10} mb={10}>
-            {posts.map((post) => (
               <GridItem
-                key={post.slug}
                 w={'full'}
-                bg="blue.600"
+                bg="white"
                 boxShadow={'xl'}
                 rounded={'md'}
                 alignContent="center"
                 justifyContent="center"
                 overflow={'hidden'}
               >
-                <Link href={`/posts/${post.slug}`}>
+                <Link href={`/ingresso`}>
                   <a>
-                    <Box>
-                      <Image src={post.image} width="100%" />
+                    <Box bg={'gray.100'} pos={'relative'}>
+                      <Image src="/assets/images/compra_online.jpg" width="100%" />
                     </Box>
-                    <Stack p={6}>
-                      <Stack direction={'column'} spacing={0} fontSize={'sm'}>
-                        <Text color="whiteAlpha.500">{post.updatedAt}</Text>
-                      </Stack>
-                      <Heading color="whiteAlpha.900" fontSize={'2xl'} fontFamily={'body'}>
-                        {post.title}
-                      </Heading>
-                      <Text color="whiteAlpha.800">{post.subtitle}</Text>
-                    </Stack>
                   </a>
                 </Link>
               </GridItem>
-            ))}
-          </Grid>
+              <GridItem
+                w={'full'}
+                bg="white"
+                boxShadow={'xl'}
+                rounded={'md'}
+                alignContent="center"
+                justifyContent="center"
+                overflow={'hidden'}
+              >
+                <Link href={`/reserva/create`}>
+                  <a>
+                    <Box bg={'gray.100'} pos={'relative'}>
+                      <Image src="/assets/images/reserva.jpg" width="100%" />
+                    </Box>
+                  </a>
+                </Link>
+              </GridItem>
+              <GridItem
+                w={'full'}
+                bg="white"
+                boxShadow={'xl'}
+                rounded={'md'}
+                alignContent="center"
+                justifyContent="center"
+                overflow={'hidden'}
+              >
+                <Box bg={'gray.100'} pos={'relative'} onClick={() => signIn('cognito')} cursor="pointer">
+                  <Image src="/assets/images/cadastro.jpg" width="100%" />
+                </Box>
+              </GridItem>
+            </Grid>
 
-          <Flex align="flex-end" justify="flex-end" mb={20}>
-            <Box bg="blue.500" color="blue.50" borderRadius={4} px="8" py="2">
-              <Link href="/posts">
-                <a>+ posts</a>
-              </Link>
-            </Box>
-          </Flex>
-        </Box>
-      </Flex>
-    </Box>
+            <Flex mb={20} gap={10} direction={['column', 'row']}>
+              <Flex
+                w={'full'}
+                direction={['column', 'row']}
+                bg="white"
+                boxShadow={'xl'}
+                rounded={'md'}
+                alignContent="center"
+                justifyContent="space-between"
+                overflow={'hidden'}
+              >
+                <Box bg={'gray.100'} pos={'relative'} w={['100%', '350px']}>
+                  <Link href={`/`}>
+                    <a>
+                      <Image src="assets/images/oracao.jpg" w="100%" />
+                    </a>
+                  </Link>
+                </Box>
+                <Stack p={6} flex="1">
+                  <Flex direction="column" justify="flex-end">
+                    <Heading color="blue.500" fontSize={'2xl'} fontFamily={'body'} mb="2">
+                      Oração do Dia
+                    </Heading>
+                    <Heading color="gray.700" fontSize={'md'}>
+                      {oracao.title}
+                    </Heading>
+                    <Text color={'gray.500'} mb="4">
+                      {oracao.description}
+                    </Text>
+                    <Flex justify="flex-end">
+                      <Button
+                        onClick={() => {
+                          onOpen();
+                          setIsModal('oracao');
+                        }}
+                        border="0"
+                        bg="blue.500"
+                        color="blue.50"
+                        borderRadius={4}
+                        px="4"
+                        py="1"
+                      >
+                        Ler mais
+                      </Button>
+                    </Flex>
+                  </Flex>
+                </Stack>
+              </Flex>
+              <Flex
+                w={'full'}
+                direction={['column', 'row']}
+                bg="white"
+                boxShadow={'xl'}
+                rounded={'md'}
+                alignContent="center"
+                justifyContent="space-between"
+                overflow={'hidden'}
+              >
+                <Box bg={'gray.100'} pos={'relative'} w={['100%', '350px']}>
+                  <Link href={`/`}>
+                    <a>
+                      <Image src="assets/images/agenda-cirio.jpg" w="100%" />
+                    </a>
+                  </Link>
+                </Box>
+                <Stack p={6} flex="1">
+                  <Heading color="blue.500" fontSize={'2xl'} fontFamily={'body'} mb="2">
+                    Agenda do Círio
+                  </Heading>
+
+                  <Box>
+                    {agenda.map((a) => (
+                      <Stack mb="2" key={a.event}>
+                        <Flex>
+                          <Icon as={RiCalendar2Line} color="gray.500" mr="2" />
+                          <Heading color="gray.500" fontSize={'sm'}>
+                            {a.datestart}
+                          </Heading>
+                        </Flex>
+                        <Heading color="gray.700" fontSize={'md'}>
+                          {a.event}
+                        </Heading>
+                      </Stack>
+                    ))}
+                    <Flex justify="flex-end">
+                      <Button
+                        onClick={() => {
+                          onOpen();
+                          setIsModal('agenda');
+                        }}
+                        border="0"
+                        bg="blue.500"
+                        color="blue.50"
+                        borderRadius={4}
+                        px="4"
+                        py="1"
+                      >
+                        Ver todos
+                      </Button>
+                    </Flex>
+                  </Box>
+                </Stack>
+              </Flex>
+            </Flex>
+
+            <Breadcrumb borderBottom="4px" borderColor="blue.500" color="blue.500" marginBottom={10}>
+              <BreadcrumbItem display="flex" justifyContent="space-between">
+                <Link href="" passHref>
+                  {' '}
+                </Link>
+                <Link href="/posts" passHref>
+                  <BreadcrumbLink fontSize="3xl">Destaques</BreadcrumbLink>
+                </Link>
+                <Link href="" passHref>
+                  {' '}
+                </Link>
+              </BreadcrumbItem>
+            </Breadcrumb>
+
+            <Grid templateColumns={['repeat(1, 1fr)', 'repeat(4, 1fr)']} gap={10} mb={10}>
+              {posts.map((post) => (
+                <GridItem
+                  key={post.slug}
+                  w={'full'}
+                  bg="blue.600"
+                  boxShadow={'xl'}
+                  rounded={'md'}
+                  alignContent="center"
+                  justifyContent="center"
+                  overflow={'hidden'}
+                >
+                  <Link href={`/posts/${post.slug}`}>
+                    <a>
+                      <Box>
+                        <Image src={post.image} width="100%" />
+                      </Box>
+                      <Stack p={6}>
+                        <Stack direction={'column'} spacing={0} fontSize={'sm'}>
+                          <Text color="whiteAlpha.500">{post.updatedAt}</Text>
+                        </Stack>
+                        <Heading color="whiteAlpha.900" fontSize={'2xl'} fontFamily={'body'}>
+                          {post.title}
+                        </Heading>
+                        <Text color="whiteAlpha.800">{post.subtitle}</Text>
+                      </Stack>
+                    </a>
+                  </Link>
+                </GridItem>
+              ))}
+            </Grid>
+
+            <Flex align="flex-end" justify="flex-end" mb={20}>
+              <Box bg="blue.500" color="blue.50" borderRadius={4} px="8" py="2">
+                <Link href="/posts">
+                  <a>+ posts</a>
+                </Link>
+              </Box>
+            </Flex>
+          </Box>
+        </Flex>
+      </Box>
+    </>
   );
 }
 
@@ -505,7 +509,17 @@ export const getStaticProps: GetStaticProps = async () => {
         hour: '2-digit',
         minute: '2-digit',
       }),
-      dateend: null,
+      dateend:
+        new Date(post.data.dateend).toLocaleDateString('pt-BR', { year: 'numeric' }) !== '1969' ||
+        new Date(post.data.dateend).toLocaleDateString('pt-BR', { year: 'numeric' }) !== '1970'
+          ? new Date(post.data.dateend).toLocaleDateString('pt-BR', {
+              day: '2-digit',
+              month: 'long',
+              year: 'numeric',
+              hour: '2-digit',
+              minute: '2-digit',
+            })
+          : null,
     };
   });
 

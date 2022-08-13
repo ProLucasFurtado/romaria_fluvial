@@ -6,6 +6,7 @@ import { GetStaticProps } from 'next';
 import { getPrismicClient } from '../../services/prismic';
 import * as prismic from '@prismicio/client';
 import { RichText } from 'prismic-dom';
+import { HeadSite } from '../../components/Head';
 
 type PostProps = {
   post: {
@@ -18,44 +19,47 @@ type PostProps = {
 
 export default function Sobre({ post }: PostProps) {
   return (
-    <Box>
-      <Flex w="100%" maxWidth={1480} mx="auto" my="6">
-        <Sidebar />
+    <>
+      <HeadSite />
+      <Box>
+        <Flex w="100%" maxWidth={1480} mx="auto" my="6">
+          <Sidebar />
 
-        <Box flex="1" borderRadius={8} bg="whiteAlpha.800" p="8">
-          <Breadcrumb
-            bg="blue.400"
-            color="white"
-            borderRadius={4}
-            px="3"
-            py="1"
-            fontSize="sm"
-            marginBottom="6"
-            spacing="8px"
-            separator={<RiArrowDropRightLine color="gray.500" />}
-          >
-            <BreadcrumbItem>
-              <Link href="/" passHref>
-                <BreadcrumbLink>Home</BreadcrumbLink>
-              </Link>
-            </BreadcrumbItem>
+          <Box flex="1" borderRadius={8} bg="whiteAlpha.800" p="8">
+            <Breadcrumb
+              bg="blue.400"
+              color="white"
+              borderRadius={4}
+              px="3"
+              py="1"
+              fontSize="sm"
+              marginBottom="6"
+              spacing="8px"
+              separator={<RiArrowDropRightLine color="gray.500" />}
+            >
+              <BreadcrumbItem>
+                <Link href="/" passHref>
+                  <BreadcrumbLink>Home</BreadcrumbLink>
+                </Link>
+              </BreadcrumbItem>
 
-            <BreadcrumbItem isCurrentPage>
-              <BreadcrumbLink href="#">{post.title}</BreadcrumbLink>
-            </BreadcrumbItem>
-          </Breadcrumb>
-          <Heading color="gray.700" fontSize={['3xl', '5xl']} mb="6" mt={['5', '20']} fontFamily={'body'}>
-            {post.title}
-          </Heading>
-          <Box bg={'gray.100'} pos={'relative'}>
-            <Image src={post.image} m="auto" w="100%" maxW="400px" mb="10" />
+              <BreadcrumbItem isCurrentPage>
+                <BreadcrumbLink href="#">{post.title}</BreadcrumbLink>
+              </BreadcrumbItem>
+            </Breadcrumb>
+            <Heading color="gray.700" fontSize={['3xl', '5xl']} mb="6" mt={['5', '20']} fontFamily={'body'}>
+              {post.title}
+            </Heading>
+            <Box bg={'gray.100'} pos={'relative'}>
+              <Image src={post.image} m="auto" w="100%" maxW="400px" mb="10" />
+            </Box>
+            <Stack>
+              <Text dangerouslySetInnerHTML={{ __html: post.content }} />
+            </Stack>
           </Box>
-          <Stack>
-            <Text dangerouslySetInnerHTML={{ __html: post.content }} />
-          </Stack>
-        </Box>
-      </Flex>
-    </Box>
+        </Flex>
+      </Box>
+    </>
   );
 }
 
