@@ -26,6 +26,7 @@ import * as prismic from '@prismicio/client';
 import { RichText } from 'prismic-dom';
 import { getSession } from 'next-auth/react';
 import { HeadSite } from '../../components/Head';
+import Head from 'next/head';
 
 type PostProps = {
   post: {
@@ -47,7 +48,15 @@ export default function Post({ post }: PostProps) {
 
   return (
     <>
-      <HeadSite />
+      <Head>
+        <title>{post.title}. Romaria Fluvial. Reservas: 91 98111-5046</title>
+        <meta name="description" content={`${post.title}. Participe da Romaria Fluvial. Reservas pelo WhatsApp (91) 98111-5046.`} />
+        <meta
+          name="keywords"
+          content="romaria fluvial, círio fluvial, círio de nazaré, outubro, vai ter círio, círio belém, círio pará, romaria do círio, romaria fluvial círio, círio em outubro, círio 2022, romaria fluvial 2022, romaria 2022"
+        />
+        <meta name="author" content="Alexandre Feio (91) 98403-8557" />
+      </Head>
       <Box>
         <Flex w="100%" maxWidth={1480} mx="auto" my="6">
           <Sidebar />
