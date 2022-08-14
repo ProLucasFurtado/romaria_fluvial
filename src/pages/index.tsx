@@ -402,11 +402,11 @@ export const getStaticProps: GetStaticProps = async () => {
   const responsePosts = await client.get({
     predicates: prismic.predicate.at('document.type', 'posts'),
     lang: 'pt-br',
-    pageSize: 4,
     orderings: {
       field: 'document.last_publication_date',
       direction: 'desc',
     },
+    pageSize: 4,
   });
 
   const posts = responsePosts.results.map((post) => {
