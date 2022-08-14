@@ -114,7 +114,12 @@ export const getServerSideProps: GetServerSideProps = async ({ req, params }) =>
 
   const client = getPrismicClient(req);
 
-  const response = await client.getByID(id);
+  const response = await client.getByID(id, {
+    orderings: {
+      field: 'document.last_publication_date',
+      direction: 'desc',
+    },
+  });
   console.log('response', response);
 
   const post = {
