@@ -107,6 +107,7 @@ export default function Home({ posts, banners, oracao, agenda, agendaTodos }: Po
               </ModalHeader>
               <ModalCloseButton />
               <ModalBody>
+                <Text fontSize="xl" dangerouslySetInnerHTML={{ __html: oracao.title }} />
                 <Text dangerouslySetInnerHTML={{ __html: oracao.content }} />
               </ModalBody>
               <ModalFooter>
