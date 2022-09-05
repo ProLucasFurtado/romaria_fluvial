@@ -38,6 +38,13 @@
           "thumbnails": []
         }
       },
+      "video": {
+        "type": "Embed",
+        "config": {
+          "label": "Video",
+          "placeholder": ""
+        }
+      },
       "content": {
         "type": "StructuredText",
         "config": {

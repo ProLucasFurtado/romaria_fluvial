@@ -164,7 +164,7 @@ export default function Home({ posts, banners, oracao, agenda, agendaTodos }: Po
           <Sidebar />
 
           <Box flex="1" borderRadius={8}>
-            <Grid templateColumns={['repeat(1, 1fr)', 'repeat(3, 1fr)']} gap={10} mb={20}>
+            <Grid templateColumns={['repeat(1, 1fr)', 'repeat(2, 1fr)']} gap={10} mb={20}>
               {/* <GridItem
               w={'full'}
               bg="gray.900"
@@ -182,7 +182,7 @@ export default function Home({ posts, banners, oracao, agenda, agendaTodos }: Po
                 </a>
               </Link>
             </GridItem> */}
-              <GridItem
+              {/* <GridItem
                 w={'full'}
                 bg="white"
                 boxShadow={'xl'}
@@ -198,7 +198,7 @@ export default function Home({ posts, banners, oracao, agenda, agendaTodos }: Po
                     </Box>
                   </a>
                 </Link>
-              </GridItem>
+              </GridItem> */}
               <GridItem
                 w={'full'}
                 bg="white"
@@ -487,15 +487,11 @@ export const getStaticProps: GetStaticProps = async () => {
         day: '2-digit',
         month: 'long',
         year: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit',
       }),
       dateend: new Date(post.data.dateend).toLocaleDateString('pt-BR', {
         day: '2-digit',
         month: 'long',
         year: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit',
       }),
     };
   });
@@ -507,8 +503,6 @@ export const getStaticProps: GetStaticProps = async () => {
         day: '2-digit',
         month: 'long',
         year: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit',
       }),
       dateend:
         new Date(post.data.dateend).toLocaleDateString('pt-BR', { year: 'numeric' }) !== '1969' ||
@@ -517,8 +511,6 @@ export const getStaticProps: GetStaticProps = async () => {
               day: '2-digit',
               month: 'long',
               year: 'numeric',
-              hour: '2-digit',
-              minute: '2-digit',
             })
           : null,
     };
